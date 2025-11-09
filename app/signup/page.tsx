@@ -11,31 +11,31 @@ const Register = () => {
     const [formData, setFormData] = useState({ name: "", email: "", password: "" });
     const dispatch = useDispatch<any>();
     const router = useRouter();
- const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    debugger
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  
-    const handleSubmit = () => {
-          
-           dispatch(register(formData)).then((resp:any)=>{
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-                if(resp?.payload?.error){
-                  alert("Please Enter Valid Details")
-                }else{
-                    router.push("/login")
-                }
-           })
+    const handleSubmit = () => {
+
+        dispatch(register(formData)).then((resp: any) => {
+
+            if (resp?.payload?.error) {
+                alert("Please Enter Valid Details")
+            } else {
+                router.push("/login")
+            }
+        })
 
     }
 
 
-    
+
 
     return (
-        <div className="flex items-center justify-center min-h-screen login-container">
-            <Paper className="w-full p-8 max-w-md shadow-md bg-white dark:bg-gray-800 login-card">
-                <Typography className="text-center pb-3 text-white font-normal" variant="h4">Register</Typography>
+        <div className="login-container">
+            <Paper elevation={6}
+                className="login-card">
+                <Typography className="text-center pb-3  font-normal" variant="h4">Register</Typography>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <Box sx={{ display: "flex", justifyContent: "center", gap: "10px", flexDirection: "column" }}>
                         <TextField
@@ -50,7 +50,7 @@ const Register = () => {
                         // InputProps={{ className: "text-gray-800 dark:text-white" }}
                         />
 
-                         <TextField
+                        <TextField
                             fullWidth
                             size="small"
                             label="User Email"
@@ -61,7 +61,7 @@ const Register = () => {
                             onChange={handleChange}
                         // InputProps={{ className: "text-gray-800 dark:text-white" }}
                         />
-                        
+
                         <TextField
                             fullWidth
                             size="small"
@@ -73,7 +73,7 @@ const Register = () => {
                             onChange={handleChange}
                         // InputProps={{ className: "text-gray-800 dark:text-white" }}
                         />
-                       
+
                         <Button
                             type="submit"
                             fullWidth

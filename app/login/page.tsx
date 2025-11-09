@@ -5,6 +5,7 @@ import "./login.css";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../components/redux/slicess/ProductSlice";
 import { useRouter } from 'next/navigation'
+import Link from "next/link";
 const Login = () => {
   const [form, setForm] = useState<any>({ name: "", password: "" });
   const dispatch = useDispatch<any>();
@@ -98,9 +99,7 @@ const Login = () => {
           className="mt-10 pt-3"
 
         >
-          <a href="/forgotPassword" >
-            Forgot Password
-          </a>
+          <Link  href="/forgotPassword">Forgot Password</Link>
         </Typography>
            
         <Typography

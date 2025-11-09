@@ -3,7 +3,8 @@ const Endpoint = {
     getAllProduct: "/allProducts",
     addUser: "/adduser",
     calculateOrder:"/calculate-order",
-    login:"login"
+    login:"login",
+    forgotPassword:"/forgot-password"
   },
 };
 

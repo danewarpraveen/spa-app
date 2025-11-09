@@ -16,7 +16,7 @@ const NavBar = () => {
     return (  
         <Box sx={{ flexGrow: 1 }}>
         {mounted && 
-        <AppBar className="sticky" >
+        <AppBar className="sticky" color="info" >
             <Toolbar>
                 <IconButton
                     size="large"

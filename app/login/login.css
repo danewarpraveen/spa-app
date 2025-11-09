@@ -17,11 +17,12 @@
 .login-title {
   text-align: center;
   font-weight: 600 !important;
-  color: white !important;
+  /* color :#5a67d8 !important; */
+  color: aliceblue;
 }
 
 .login-subtitle {
-  color: rgba(255, 255, 255, 0.8) !important;
+  /* color: rgba(255, 255, 255, 0.8) !important; */
 }
 
 /* Button styling */

@@ -11,17 +11,19 @@
   width: 100%;
   max-width: 400px;
   border-radius: 20px !important;
-  background: rgba(255, 255, 255, 0.1) !important;
+  /* background: rgba(255, 255, 255, 0.1) !important; */
   backdrop-filter: blur(15px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important; */
+  /* border: 1px solid rgba(255, 255, 255, 0.2) !important; */
 }
 .login-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  /* background-color: aliceblue; */
+  /* background: linear-gradient(135deg, #667eea, #764ba2); */
+  background-image: url("../public/image/close-up-therapist-hand-massaging-woman-s-back-with-hot-towel-spa_23-2147939902.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -53,6 +55,15 @@
   to {
     background-position: 100px 100px;
   }
+}
+
+.font-normal{
+   /* color :#5a67d8 !important; */
+   color: aliceblue;
+}
+
+.css-1gtchvp-MuiPaper-root{
+  background-color: transparent !important;
 }
 
 /* Button styling */

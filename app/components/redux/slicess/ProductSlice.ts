@@ -20,6 +20,12 @@ export const doLogin = createAsyncThunk("login", async (param)=>{
     const res = await Api.post(url,param);
     return res ;
 })
+ 
+export const forgetPassword = createAsyncThunk("forgetPassword",async (data:any)=>{
+    const url = Endpoint.services.forgotPassword ;
+    const resp = await Api.post(url,data);
+    return resp ;
+})
 
 
 export const register = createAsyncThunk("register",async (data:any)=>{
