@@ -15,6 +15,7 @@ const ForgotPassword = () => {
     });
 
     const [isClient, setIsClient] = useState(false);
+    const [isOtpSend,setIsOtpSend] = useState(false);
 
      useEffect(() => {
     setIsClient(true);
@@ -25,18 +26,20 @@ const ForgotPassword = () => {
         setsnackBarobj({ ...snackBarobj, open: true });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        // Handle forgot password submission logic here
+    const handleVerify = (e: React.FormEvent<HTMLFormElement>) => {
+        
         e.preventDefault();
         if (formData.email) {
-            handleClick();
+            // handleClick();
             dispatch(forgetPassword(formData)).then((resp: any) => {
                 console.log(resp, "forgot response");
                 setsnackBarobj({ open: true, message: resp?.payload?.message });
+                setIsOtpSend(true);
 
             })
         }else{
             setsnackBarobj({ open: true, message: "Please Enter Email" });
+            setIsOtpSend(false);
         }
 
     }
@@ -47,8 +50,9 @@ const ForgotPassword = () => {
             {!isClient ? null :  <Paper style={{background:"transparent"}} className="w-full p-8 max-w-md shadow-md bg-white dark:bg-gray-800 login-card">
                 <Typography className="text-center pb-3 text-white font-normal" variant="h4">Forgot Password</Typography>
                 <Typography style={{color:"black"}} variant="body1">Enter the email address associated with your account and we will send you a link to reset your password.</Typography>
-                <form onSubmit={handleSubmit}>
+                <form >
                     <Stack spacing={2}>
+                        <div className="flex">
                         <TextField
                             fullWidth
                             size="small"
@@ -60,7 +64,26 @@ const ForgotPassword = () => {
                             placeholder="Enter you email" >
 
                         </TextField>
-                        <Button size="small" variant="contained" type="submit">Submit</Button>
+                         <Button  onClick={(e:any)=>handleVerify(e)} size="small" variant="text">Verify</Button>
+                        </div>
+
+                        {isOtpSend && <Box>
+                            <TextField
+                                type="text"
+                                name="token"
+                                placeholder="Enter OTP"
+                                fullWidth
+                                // value={}
+                                size="small"
+                                variant="outlined"
+                                >
+
+                            </TextField>
+
+                            <Typography style={{color:"black"}} variant="body2">If an account with that email exists, a password reset link has been sent.</Typography>
+                        </Box>}
+
+                        <Button size="small"  variant="contained" type="submit">Submit</Button>
                     </Stack>
 
                 </form>

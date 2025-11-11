@@ -4,7 +4,10 @@ const Endpoint = {
     addUser: "/adduser",
     calculateOrder:"/calculate-order",
     login:"login",
-    forgotPassword:"/forgot-password"
+    forgotPassword:"/forgot-password",
+    resetPassword:"/reset-password",
+    addtocard :"addtocard",
+    deleteCard : "deleteCard"
   },
 };
 

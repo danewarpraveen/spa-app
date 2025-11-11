@@ -22,9 +22,9 @@ const Login = () => {
         localStorage.setItem("token",res?.payload.token);
         localStorage.setItem("user", JSON.stringify(res?.payload.username));
         router.push("/products")
-        setIsValid(false);
-      } else {
         setIsValid(true);
+      } else {
+        setIsValid(false);
         console.log("Invalid credentials");
       }
     })

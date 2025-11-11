@@ -15,6 +15,14 @@ export const Api = {
             bodyparam: params,
             headers
         })
+    ,
+    delete: (url: string, params?: any, headers?: any) =>
+        makeRequest({
+            url,        
+            method: "DELETE",
+            bodyparam: params,
+            headers
+        })  
 
 
 }

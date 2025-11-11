@@ -15,8 +15,8 @@ const Register = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = () => {
-
+    const handleSubmit = (e:any) => {
+        e.preventDefault();
         dispatch(register(formData)).then((resp: any) => {
 
             if (resp?.payload?.error) {

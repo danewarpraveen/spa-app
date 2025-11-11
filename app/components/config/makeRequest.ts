@@ -1,8 +1,8 @@
 import service from "./ApiConfig";
 
 const buildRequest = (request: any) => {
-    console.log(request);
     debugger
+    console.log(request);
     const { body, method, url, headers, bodyparam, responseType } = request;
     const contentType = bodyparam instanceof FormData
         ? 'multipart/form-data'

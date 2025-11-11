@@ -1,9 +1,11 @@
 "use client"
-import { Avatar, Box, Card, CardActionArea, CardContent, CardMedia, Grid, IconButton, Input, List, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText, Paper, Stack, Typography } from "@mui/material"
+import { Avatar, Box, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, IconButton, Input, List, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText, Paper, Stack, Typography } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useDispatch } from "react-redux";
-import { getProdects } from "../components/redux/slicess/ProductSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addtoCard, deleteByCardId, getProdects } from "../components/redux/slicess/ProductSlice";
+import UserCard from "./Card";
+import { getFromLocalStorage } from "../components/helper/loacalSorage";
 
 const Products = () => {
 
@@ -11,19 +13,25 @@ const Products = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [selectedPrpduct, setSelectedProd] = useState([]);
 
+    const { userData } = useSelector((state: any) => state?.products);
+
+    console.log(userData,"userDatauserDatauserData");
+
     const dispatch = useDispatch<any>();
 
     useEffect(() => {
-             dispatch(getProdects()).then((res:any)=>{
-             console.log(res?.payload.data);
-             setProducts(res?.payload.data)   
-             setIsLoading(false);       
-             }).catch((error:any)=>{
-                  setIsLoading(true);   
-             })
+        dispatch(getProdects()).then((res: any) => {
+            console.log(res?.payload.data);
+            setProducts(res?.payload.data)
+            setIsLoading(false);
+        }).catch((error: any) => {
+            setIsLoading(true);
+        })
     }, []);
 
     const handleSelection = (item: any) => {
+        console.log(item, "produessssssss");
+
         setSelectedProd((prevSelected: any) => {
             const isAlreadySelected = prevSelected.some(
                 (prod: any) => prod.productName === item.productName
@@ -35,15 +43,27 @@ const Products = () => {
                     (prod: any) => prod.productName !== item.productName
                 );
             } else {
-                // add new selected product
                 return [...prevSelected, item];
             }
         });
+
+        let user = getFromLocalStorage("user"); 
+        dispatch(addtoCard({user,item})).then((res: any) => {
+            console.log(res)
+        }).catch((err: any) => {
+            console.log(err)
+        });
+
     }
 
-    // console.log(selectedPrpduct);
-    console.log(products);
-    
+    const handleDeleteCard    = async (cardId: string) => {   
+        let user = getFromLocalStorage("user");
+        await dispatch(deleteByCardId({user,cardId})).then((res: any) => {
+            console.log(res)
+        }).catch((err: any) => {
+            console.log(err)
+        });
+    }   
 
     function generate(element: React.ReactElement<unknown>) {
         return [0, 1, 2].map((value) =>
@@ -65,7 +85,7 @@ const Products = () => {
             <div style={{ display: "flex", padding: "20px" }}>
                 <Input name="hell"></Input>
             </div>
-            {isLoading ? <div>islodinhgg</div> : <Grid container spacing={2}>
+            {isLoading ? <Box maxWidth={400} mx="auto" mt="30%"><CircularProgress /></Box> : <Grid container spacing={2}>
                 <Grid size={selectedPrpduct.length > 0 ? 8 : 12}>
                     <Box sx={{
                         width: '100%',
@@ -73,7 +93,7 @@ const Products = () => {
                         gridTemplateColumns: 'repeat(auto-fill, minmax(min(200px, 100%), 1fr))',
                         gap: 2,
                     }}>
-                        
+
                         {products?.map((item: any, index: number) => (
                             <Card
                                 key={index}
@@ -116,42 +136,17 @@ const Products = () => {
 
 
                 </Grid>
-                
-                    {/* 🧾 Selected List */}
-                    {selectedPrpduct.length > 0 && (
-                        <Grid size={selectedPrpduct ? 4 : 0}>
-                        <Box sx={{ mt: 4, p: 2, border: "1px solid #ccc", borderRadius: 2 }}>
-                            <Typography variant="h6" mb={2}>
-                                Selected Services
-                            </Typography>
-                            <List>
-                                {selectedPrpduct.map((item: any, index) => (
-                                    <ListItem
-                                        key={index}
-                                        sx={{
-                                            borderBottom: "1px solid #eee",
-                                        }}
-                                    >
-                                        <ListItemText
-                                            primary={item.productName}
-                                            secondary={`₹ ${item.productCost}`}
-                                        />
-                                        <ListItemSecondaryAction>
-                                            <IconButton
-                                                edge="end"
-                                                color="error"
-                                                onClick={() => handleDelete(item.productName)}
-                                            >
-                                                <DeleteIcon />
-                                            </IconButton>
-                                        </ListItemSecondaryAction>
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </Box>
-                     </Grid>
-                    )}
-                
+
+
+                {selectedPrpduct.length > 0 && (
+                    <UserCard
+                        handleDeleteCard={handleDeleteCard}
+                        selectedPrpduct={selectedPrpduct}
+                    />
+
+                )}
+
+
             </Grid>}
 
         </Stack>
