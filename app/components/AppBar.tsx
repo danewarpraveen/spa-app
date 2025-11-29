@@ -33,7 +33,7 @@ const NavBar = () => {
 
                 <Link className="hover:text-blue-800" href="/">Home</Link>
                 <Link href="/signup">Sign Up</Link>
-                <Link  href="/login">Sign In</Link>
+               { localStorage.getItem("user") ? <Link  href="/login">Sign In</Link> : <Link  href="/login">Sign out</Link> } 
                 </Box>
                 <IconButton
                 size="large"

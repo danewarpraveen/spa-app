@@ -1,7 +1,6 @@
 import service from "./ApiConfig";
 
 const buildRequest = (request: any) => {
-    debugger
     console.log(request);
     const { body, method, url, headers, bodyparam, responseType } = request;
     const contentType = bodyparam instanceof FormData
@@ -11,7 +10,7 @@ const buildRequest = (request: any) => {
         'Content-Type': contentType,
     };
     var requestConfig: any = {
-        body: contentType,
+        // body: contentType,
         headers: headersObj,
         method,
         url

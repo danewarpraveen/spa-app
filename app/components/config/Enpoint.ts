@@ -7,7 +7,8 @@ const Endpoint = {
     forgotPassword:"/forgot-password",
     resetPassword:"/reset-password",
     addtocard :"addtocard",
-    deleteCard : "deleteCard"
+    deleteCard : "/deleteCard",
+    getCards : "/getCards",
   },
 };
 

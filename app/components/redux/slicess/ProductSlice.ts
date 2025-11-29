@@ -59,6 +59,12 @@ export const addtoCard = createAsyncThunk("addtoCard",async (data:any)=>{
     return resp ;   
 });
 
+export const getCardsData = createAsyncThunk("getCards",async (username:string)=>{        
+   
+    const url = `${Endpoint.services.getCards}?user=${username}`;
+    const resp = await Api.get(url);
+    return resp ;   
+});
 
 export  const deleteByCardId = createAsyncThunk("deleteByCardId",async (data:any)=>{        
     

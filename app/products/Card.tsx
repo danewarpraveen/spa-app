@@ -1,18 +1,20 @@
-import { Box, Grid, IconButton, List, ListItem, ListItemText, Typography } from "@mui/material"
+import { Box, Grid, IconButton, List, ListItem, ListItemText, Typography ,Button } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import React from "react";
-
+import Link from "next/link";
 
 type CardProps = {
-    selectedPrpduct: any[];
+    selectedService: any[];
     handleDeleteCard: (productName: string) => void;
 };
 const UserCard: React.FC<CardProps> = (props) => {
 
-    const { selectedPrpduct, handleDeleteCard } = props;
+    const { selectedService, handleDeleteCard } = props;
+
+    console.log("Selected Services in Card:", selectedService);
 
     return (
-        <Grid size={selectedPrpduct ? 4 : 0}>
+        <Grid size={selectedService ? 4 : 0}>
             <Box
                 sx={{
                     mt: 2,
@@ -38,7 +40,7 @@ const UserCard: React.FC<CardProps> = (props) => {
                     ADEDD SERVICESS
                 </Typography>
                 <List>
-                    {selectedPrpduct.map((item: any, index: number) => (
+                    {selectedService.map((item: any, index: number) => (
                         <ListItem
                             key={index}
                             sx={{
@@ -55,16 +57,16 @@ const UserCard: React.FC<CardProps> = (props) => {
                                 <IconButton
                                     edge="end"
                                     color="error"
-                                    onClick={() => handleDeleteCard(item.product_id)}
-                                    aria-label={`delete ${item.product_id}`}
+                                    onClick={() => handleDeleteCard(item.p_Id)}
+                                    aria-label={`delete ${item.p_Id}`}
                                 >
                                     <DeleteIcon />
                                 </IconButton>
                             }
                         >
                             <ListItemText
-                                primary={item.productName}
-                                secondary={`₹ ${item.productCost}`}
+                                primary={item.s_name}
+                                secondary={`₹ ${item.s_cost}`}
                                 primaryTypographyProps={{
                                     fontWeight: 600,
                                     fontSize: "1.1rem",
@@ -79,6 +81,11 @@ const UserCard: React.FC<CardProps> = (props) => {
                         </ListItem>
                     ))}
                 </List>
+               <Button variant="contained" color="primary" fullWidth>
+                <Link href="/bill"> 
+                    Proceed to Checkout 
+                </Link>
+                </Button>
             </Box>
         </Grid>
     )

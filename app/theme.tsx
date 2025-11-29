@@ -17,6 +17,18 @@ const theme = createTheme({
       paper: "#ffffff",
     },
   },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "transparent",
+        },
+        input: {
+          backgroundColor: "transparent",
+        }
+      }
+    }
+  },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     h6: {
