@@ -74,6 +74,14 @@ export  const deleteByCardId = createAsyncThunk("deleteByCardId",async (data:any
     return resp ;   
 });
 
+export const bookingAppointment = createAsyncThunk("bookingAppointment",async (data:any)=>{
+
+    const url = `${Endpoint.services.bookAppointment}/${data.user}`;  ;
+
+    const resp = await Api.post(url,data.order);
+    return resp ;   
+}
+);
 
 const productslice = createSlice({
     name: "product",

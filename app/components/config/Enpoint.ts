@@ -9,6 +9,7 @@ const Endpoint = {
     addtocard :"addtocard",
     deleteCard : "/deleteCard",
     getCards : "/getCards",
+    bookAppointment : "/book-appointment",
   },
 };
 

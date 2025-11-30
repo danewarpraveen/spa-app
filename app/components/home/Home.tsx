@@ -3,6 +3,7 @@ import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import Footer from "../footer/Footer";
 import Link from "next/link";
 import './home.css'
+import { getFromLocalStorage } from "../helper/loacalSorage";
 
 const HomePage = () => {
     return (<Box sx={{
@@ -31,10 +32,8 @@ const HomePage = () => {
                 Experience true relaxation with natural therapies and a peaceful
                 atmosphere.
             </Typography>
-            <Button color="secondary" className="signupButton" variant="contained" endIcon={<AccessTimeFilledIcon />}>
-                {/* Book Appointment */}
-                <Link href={"/products"}>EXPLORE OUR SERVICES</Link>
-                
+              <Button  variant="contained" color="secondary"> 
+            <Link href={ getFromLocalStorage("user") ? "/products":"/login"}>EXPLORE OUR SERVICES</Link>
             </Button>
         </Box>
       <Box sx={{paddingTop:"150px"}}><Footer /></Box>  
