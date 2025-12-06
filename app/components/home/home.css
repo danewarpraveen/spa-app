@@ -8,3 +8,30 @@
     background-color: red;
     color: aqua;
 } */
+
+.exploreButton {
+    position: relative;
+    border: 20px solid black;
+    width: 200px;    
+}
+
+.exploreButton:active {
+  color: red;
+  animation-name:eploreButtonAnimation 1s  ;
+ 
+}
+@keyframes eploreButtonAnimation {
+    from {
+        width: 200px;
+       
+    }
+    to {
+       width: 0px;
+        
+    }
+}
+ 
+ 
+ 
+ 
+ 

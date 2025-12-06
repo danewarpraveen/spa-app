@@ -32,9 +32,12 @@ const HomePage = () => {
                 Experience true relaxation with natural therapies and a peaceful
                 atmosphere.
             </Typography>
-              <Button  variant="contained" color="secondary"> 
-            <Link href={ getFromLocalStorage("user") ? "/products":"/login"}>EXPLORE OUR SERVICES</Link>
-            </Button>
+              <Button className="exploreButton"  variant="contained" color="secondary"> 
+            <Link 
+            // href={ getFromLocalStorage("user") ? "/products":"/login"}
+            href={"#"}
+            >EXPLORE OUR SERVICES</Link>
+            </Button>   
         </Box>
       <Box sx={{paddingTop:"150px"}}><Footer /></Box>  
     
